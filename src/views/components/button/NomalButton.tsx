@@ -10,6 +10,7 @@ export interface ButtonProps {
   iconType?: string;
   iconStyle?: ViewStyle;
   buttonStyle?: ViewStyle;
+  style?: ViewStyle;
   onPress?: () => void;
 }
 
@@ -22,19 +23,24 @@ export const NomalButton = (props: ButtonProps) => {
     iconStyle,
     buttonStyle,
     onPress,
+    style,
   } = props;
 
   return (
     <Button
+      style={style}
       onPress={onPress}
-      buttonStyle={[{
-        width: 286,
-        height: 50,
-        borderRadius: 25,
-        marginTop: Metrics.spacing.large
-      },buttonStyle]}
+      buttonStyle={[
+        {
+          width: 286,
+          height: 50,
+          borderRadius: 25,
+          marginTop: Metrics.spacing.large,
+        },
+        buttonStyle,
+      ]}
       title={title}
-      titleStyle={[titleStyle,{fontSize: Metrics.FontSize.h6}]}
+      titleStyle={[titleStyle, {fontSize: Metrics.FontSize.h6}]}
       icon={
         <Icon
           name={icon}
@@ -46,4 +52,3 @@ export const NomalButton = (props: ButtonProps) => {
     />
   );
 };
-

@@ -47,7 +47,8 @@
         "@share": ["./src/share"],
         "@components": ["./src/views/components"],
         "@assets": ["./src/assets"],
-        "@navigator":["./src/navigator"]
+        "@navigator":["./src/navigator"],
+        "@services": ["./src/services"]
       } /* A series of entries which r,e-map imports to lookup locations relative to the 'baseUrl'. */,
       // "rootDirs": [],                        /* List of root folders whose combined content represents the structure of the project at runtime. */
       // "typeRoots": [],                       .d/* List of folders to include type definitions from. */
