@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     marginVertical: Metrics.spacing.medium,
   },
 
-  messageContainer:{paddingHorizontal: Metrics.spacing.extraHuge}
+  messageContainer:{paddingHorizontal: Metrics.spacing.extraHuge, paddingBottom:Metrics.spacing.huge}
 });
 
 const DateContainer = styled.View`

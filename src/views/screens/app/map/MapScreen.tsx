@@ -4,15 +4,24 @@ import {
   Text,
   Image,
   TouchableOpacity,
-  ImageBackground,
+  ImageBackground
 } from 'react-native';
 import {Colors, Metrics} from '@share';
 import {Images} from '@assets';
 import {styles} from './styles';
-import {MainHeader, ToggleServices,MapCard} from '@components';
+import {MainHeader, ToggleServices, MapCard} from '@components';
 
+import {ParamListBase} from '@react-navigation/native';
+import {NativeStackNavigationProp} from 'react-native-screens/native-stack/types';
+import {AppRoute} from '@navigator';
 
-export const MapScreen = () => {
+export interface MapProps {
+  navigation: NativeStackNavigationProp<ParamListBase>;
+}
+
+export const MapScreen: React.FunctionComponent = (props: MapProps) => {
+  const {navigation} = props;
+
   return (
     <View style={{backgroundColor: Colors.Background.AppBackground, flex: 1}}>
       <ImageBackground
@@ -27,7 +36,9 @@ export const MapScreen = () => {
         <View style={styles.centerItem}>
           <Image source={Images.Group} />
         </View>
-        <TouchableOpacity style={{flex: 1}}>
+        <TouchableOpacity
+          style={{paddingBottom: Metrics.spacing.large}}
+          onPress={() => navigation.navigate(AppRoute.BOOKINGMENU)}>
           <MapCard
             title={'Faroe Bar'}
             image={Images.Bar}

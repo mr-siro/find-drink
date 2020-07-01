@@ -13,7 +13,17 @@ import {Images} from '@assets';
 import {Colors, Metrics} from '@share';
 import {NomalButton} from '@components';
 
-export const SignInScreen: React.FunctionComponent = () => {
+import {ParamListBase} from '@react-navigation/native';
+import {NativeStackNavigationProp} from 'react-native-screens/native-stack/types';
+import { AppRoute } from '@navigator';
+
+export interface SignInProps {
+  navigation: NativeStackNavigationProp<ParamListBase>;
+}
+
+export const SignInScreen: React.FunctionComponent = (props: SignInProps) => {
+  const {navigation} = props;
+
   return (
     <View style={{backgroundColor:Colors.Background.AppBackground,flex:1}}>
     <ImageBackground
@@ -36,6 +46,7 @@ export const SignInScreen: React.FunctionComponent = () => {
             icon={'logo-facebook'}
             iconType={'ionicon'}
             iconStyle={{marginRight:Metrics.spacing.medium}}
+            onPress={() => navigation.navigate(AppRoute.APP)}
           />
           <NomalButton
           title={'Sign up with Untappd'}
@@ -43,6 +54,7 @@ export const SignInScreen: React.FunctionComponent = () => {
           icon={'ios-beer'}
           iconType={'ionicon'}
           iconStyle={{marginRight:Metrics.spacing.medium}}
+          onPress={() => navigation.navigate(AppRoute.APP)}
           />
         </View>
         <Bottom>

@@ -1,24 +1,29 @@
 import React from 'react';
-import {
-  View,
-  Image,
-  FlatList,
-  ImageSourcePropType,
-} from 'react-native';
+import {View, Image, FlatList, ImageSourcePropType, ScrollView} from 'react-native';
 import {Colors, Metrics} from '@share';
 import {Images} from '@assets';
 import {styles, Container} from './styles';
 import {MainHeader, ToggleServices, Card, NomalButton} from '@components';
 import {listDrink} from '@services';
 
+import {ParamListBase} from '@react-navigation/native';
+import {NativeStackNavigationProp} from 'react-native-screens/native-stack/types';
+import {AppRoute} from '@navigator';
+
+export interface MenuProps {
+  navigation: NativeStackNavigationProp<ParamListBase>;
+}
+
 export interface Products {
-  id:string;
+  id: string;
   title: string;
   price: string;
   image: ImageSourcePropType;
 }
 
-export const BookingMenu = () => {
+export const BookingMenu: React.FunctionComponent = (props: MenuProps) => {
+  const {navigation} = props;
+
   const renderItem = (item: Products, index: number) => {
     return (
       <Card
@@ -29,7 +34,7 @@ export const BookingMenu = () => {
       />
     );
   };
-  
+
   return (
     <View style={{flex: 1}}>
       <MainHeader
@@ -37,15 +42,18 @@ export const BookingMenu = () => {
         leftComponent={<Image source={Images.ICmenu} />}
       />
       <ToggleServices />
+      <ScrollView>
       <Container>
         <FlatList
           data={listDrink}
           renderItem={({item, index}) => renderItem(item, index)}
+          style={{marginTop:16}}
         />
       </Container>
-      <View
-        style={styles.bottomContainer}>
+      </ScrollView>
+      <View style={styles.bottomContainer}>
         <NomalButton
+          onPress={() => navigation.navigate(AppRoute.BOOKINGCART)}
           title={'Choose your friend'}
           buttonStyle={{backgroundColor: Colors.Background.ButtonBackground}}
         />

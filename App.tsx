@@ -5,13 +5,7 @@
 import React from 'react';
 import {StatusBar} from 'react-native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
-import {
-  SignInScreen,
-  MapScreen,
-  BookingMenu,
-  BookingCart,
-  ReddemScreen,
-} from '@screens';
+import {AppNavigator} from '@navigator';
 
 function App() {
   return (
@@ -21,7 +15,7 @@ function App() {
         backgroundColor={'transparent'}
         translucent={true}
       />
-      <ReddemScreen />
+     <AppNavigator/>
     </SafeAreaProvider>
   );
 }

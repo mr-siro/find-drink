@@ -4,9 +4,9 @@ import styled from 'styled-components';
 
 const styles = StyleSheet.create({
   centerItem:{
-    justifyContent: 'center',
-    alignSelf: 'center',
-    flex: 3
+  justifyContent: 'center',
+  alignItems:'center',
+  flex:1
   },
 });
 

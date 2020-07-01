@@ -15,7 +15,7 @@ bottomContainer:{
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: Colors.White,
-    flex: 1,
+   paddingVertical:Metrics.spacing.extraLarge
   }
 });
 

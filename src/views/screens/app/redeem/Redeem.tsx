@@ -24,7 +24,7 @@ export const ReddemScreen = () => {
       <ImageBackground
         source={Images.Oval}
         style={styles.imageBackGround}
-        resizeMode={'contain'}>
+        resizeMode={'cover'}>
         <ScrollView>
           <QrImage>
             <Image source={Images.Qr} />
@@ -69,7 +69,7 @@ export const ReddemScreen = () => {
           </Cost>
           <View style={styles.messageContainer}>
             <Message>{'MESSAGE'}</Message>
-            <Text style={{fontSize: Metrics.FontSize.large}}>
+            <Text style={styles.Text}>
               {'Hello this is my gift for you Neque porro quisquam est qui '}
             </Text>
           </View>

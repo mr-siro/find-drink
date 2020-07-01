@@ -6,13 +6,23 @@ import {Icon} from 'react-native-elements';
 import {listDrink} from '@services';
 import {styles} from './styles';
 
+import {ParamListBase} from '@react-navigation/native';
+import {NativeStackNavigationProp} from 'react-native-screens/native-stack/types';
+import {AppRoute} from '@navigator';
+
+export interface CartProps {
+  navigation: NativeStackNavigationProp<ParamListBase>;
+}
+
 export interface Carts {
-  id:string;
+  id: string;
   image: ImageSourcePropType;
   price: string;
 }
 
-export const BookingCart = () => {
+export const BookingCart: React.FunctionComponent = (props: CartProps) => {
+  const {navigation} = props;
+
   const renderItem = (item: Carts, index: number) => {
     return <CartItem image={item.image} amount={'01'} price={item.price} />;
   };
@@ -21,7 +31,7 @@ export const BookingCart = () => {
       <MainHeader
         title={'Choose your Friend'}
         leftComponent={
-          <Icon name={'arrow-back'} color={Colors.White} onPress={() => {}} />
+          <Icon name={'arrow-back'} color={Colors.White} onPress={() => navigation.goBack()} />
         }
       />
       <HeaderCard
@@ -39,7 +49,11 @@ export const BookingCart = () => {
           <Text style={{fontSize: 18, color: '#676767'}}>{'Total:'}</Text>
           <Text style={{fontSize: 22}}>${'148'}</Text>
         </View>
-        <NomalButton title={'Payment'} buttonStyle={styles.payBtn} />
+        <NomalButton
+          title={'Payment'}
+          buttonStyle={styles.payBtn}
+          onPress={() => navigation.navigate(AppRoute.REDEEM)}
+        />
       </View>
     </View>
   );
