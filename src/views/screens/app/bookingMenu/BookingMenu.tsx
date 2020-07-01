@@ -34,11 +34,13 @@ export const BookingMenu: React.FunctionComponent = (props: MenuProps) => {
   const [count, setCount] = useState(0);
 
   const handleAddItem = (id: string) => {
-    const filteredData = listMenu.find((item: Products) => item.id == id);
+    let newList =[...listMenu];
+    const filteredData = newList.find((item: Products) => item.id == id);
     if (filteredData) {
       setCount((filteredData.count = filteredData.count + 1));
+      setListMenu(newList);
     }
-    // console.log(filteredData);
+    // console.log(newList);
   };
 
   const renderItem = (item: Products, index: number) => {
