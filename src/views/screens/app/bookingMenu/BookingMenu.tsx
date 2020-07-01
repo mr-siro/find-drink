@@ -1,5 +1,11 @@
-import React from 'react';
-import {View, Image, FlatList, ImageSourcePropType, ScrollView} from 'react-native';
+import React, {useState} from 'react';
+import {
+  View,
+  Image,
+  FlatList,
+  ImageSourcePropType,
+  ScrollView,
+} from 'react-native';
 import {Colors, Metrics} from '@share';
 import {Images} from '@assets';
 import {styles, Container} from './styles';
@@ -19,10 +25,22 @@ export interface Products {
   title: string;
   price: string;
   image: ImageSourcePropType;
+  count:number
 }
 
 export const BookingMenu: React.FunctionComponent = (props: MenuProps) => {
   const {navigation} = props;
+  const [listMenu,setListMenu] = useState(listDrink);
+  const [count, setCount] = useState(0);
+
+  const handleAddItem = (id:string) => {
+    const filteredData = listMenu.find((item:Products) => item.id == id);
+    setCount((count) => count + 1);
+    if(filteredData) {
+      setCount(filteredData.count = filteredData.count +1)
+    }
+    console.log(filteredData)
+  };
 
   const renderItem = (item: Products, index: number) => {
     return (
@@ -30,7 +48,8 @@ export const BookingMenu: React.FunctionComponent = (props: MenuProps) => {
         title={item.title}
         price={item.price}
         image={item.image}
-        buttonTitle={'x2'}
+        buttonTitle={item.count}
+        onPress={() => handleAddItem(item.id)}
       />
     );
   };
@@ -43,13 +62,13 @@ export const BookingMenu: React.FunctionComponent = (props: MenuProps) => {
       />
       <ToggleServices />
       <ScrollView>
-      <Container>
-        <FlatList
-          data={listDrink}
-          renderItem={({item, index}) => renderItem(item, index)}
-          style={{marginTop:16}}
-        />
-      </Container>
+        <Container>
+          <FlatList
+            data={listMenu}
+            renderItem={({item, index}) => renderItem(item, index)}
+            style={{marginTop: 16}}
+          />
+        </Container>
       </ScrollView>
       <View style={styles.bottomContainer}>
         <NomalButton

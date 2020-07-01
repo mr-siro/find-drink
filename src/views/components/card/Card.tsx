@@ -13,7 +13,7 @@ export interface CardProps {
   title: string;
   price: string;
   onPress?: () => void;
-  buttonTitle?: string;
+  buttonTitle?: number;
 }
 
 export const Card = (props: CardProps) => {
