@@ -5,6 +5,8 @@ import {
   Image,
   TouchableOpacity,
   ImageSourcePropType,
+  TextStyle,
+  ViewStyle,
 } from 'react-native';
 import {Colors, Metrics} from '@share';
 
@@ -13,11 +15,12 @@ export interface CardProps {
   title: string;
   price: string;
   onPress?: () => void;
-  buttonTitle?: number;
+  buttonTitle?: number | string;
+  buttonStyle?: ViewStyle;
 }
 
 export const Card = (props: CardProps) => {
-  const {image, title, price, onPress, buttonTitle} = props;
+  const {image, title, price, onPress, buttonTitle, buttonStyle} = props;
 
   return (
     <View
@@ -61,17 +64,19 @@ export const Card = (props: CardProps) => {
       </View>
       <TouchableOpacity
         onPress={onPress}
-        style={{
-          position: 'relative',
-          backgroundColor: 'green',
-          width: 39,
-          height: 37,
-          borderTopLeftRadius: 10,
-          borderBottomRightRadius: 10,
-          alignItems: 'center',
-          justifyContent: 'center',
-          left: 12,
-        }}>
+        style={[
+          {
+            position: 'relative',
+            width: 39,
+            height: 37,
+            borderTopLeftRadius: 10,
+            borderBottomRightRadius: 10,
+            alignItems: 'center',
+            justifyContent: 'center',
+            left: 12,
+          },
+          buttonStyle,
+        ]}>
         <Text style={{fontSize: 20, color: Colors.White}}>{buttonTitle}</Text>
       </TouchableOpacity>
     </View>

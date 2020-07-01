@@ -47,7 +47,8 @@ export const BookingMenu: React.FunctionComponent = (props: MenuProps) => {
         title={item.title}
         price={item.price}
         image={item.image}
-        buttonTitle={item.count}
+        buttonTitle={item.count == 0 ? '+' : `x${item.count}`}
+        buttonStyle={{backgroundColor: item.count == 0 ? '#121F39' : '#72C729'}}
         onPress={() => handleAddItem(item.id)}
       />
     );
