@@ -25,21 +25,20 @@ export interface Products {
   title: string;
   price: string;
   image: ImageSourcePropType;
-  count:number
+  count: number;
 }
 
 export const BookingMenu: React.FunctionComponent = (props: MenuProps) => {
   const {navigation} = props;
-  const [listMenu,setListMenu] = useState(listDrink);
+  const [listMenu, setListMenu] = useState(listDrink);
   const [count, setCount] = useState(0);
 
-  const handleAddItem = (id:string) => {
-    const filteredData = listMenu.find((item:Products) => item.id == id);
-    setCount((count) => count + 1);
-    if(filteredData) {
-      setCount(filteredData.count = filteredData.count +1)
+  const handleAddItem = (id: string) => {
+    const filteredData = listMenu.find((item: Products) => item.id == id);
+    if (filteredData) {
+      setCount((filteredData.count = filteredData.count + 1));
     }
-    console.log(filteredData)
+    // console.log(filteredData);
   };
 
   const renderItem = (item: Products, index: number) => {
