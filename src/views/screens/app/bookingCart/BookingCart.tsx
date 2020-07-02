@@ -24,7 +24,7 @@ export interface Carts {
 
 export const BookingCart: React.FunctionComponent = (props: CartProps) => {
   const {navigation, route} = props;
-  const {prouctSelected, count} = route.params;
+  const {prouctSelected} = route.params;
 const Price =() => {
   prouctSelected
 }

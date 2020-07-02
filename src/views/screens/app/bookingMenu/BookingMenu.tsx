@@ -82,8 +82,7 @@ export const BookingMenu: React.FunctionComponent = (props: MenuProps) => {
         <NomalButton
           onPress={() =>
             navigation.navigate(AppRoute.BOOKINGCART, {
-              prouctSelected: filterProduct(),
-              count:count
+              prouctSelected: filterProduct()
             })
           }
           title={'Choose your friend'}
