@@ -13,8 +13,15 @@ import {
   Line,
 } from './styles';
 import {Icon} from 'react-native-elements';
+import {RouteProp} from '@react-navigation/native';
+import moment from 'moment';
 
-export const ReddemScreen = () => {
+export interface ReddemProps {
+  route: RouteProp;
+}
+export const ReddemScreen = (props: ReddemProps) => {
+  const {route} = props;
+  const {message} = route.params;
   return (
     <View style={{flex: 1}}>
       <MainHeader
@@ -41,7 +48,9 @@ export const ReddemScreen = () => {
           <DateContainer>
             <View>
               <Text style={styles.Title}>{'DATE'}</Text>
-              <Text style={styles.Text}>{'02 Jul, 2018'}</Text>
+              <Text style={styles.Text}>
+                {moment(new Date()).format('DD/MM/YYYY')}
+              </Text>
             </View>
             <View>
               <Text style={styles.Title}>{'FROM'}</Text>
@@ -69,9 +78,7 @@ export const ReddemScreen = () => {
           </Cost>
           <View style={styles.messageContainer}>
             <Message>{'MESSAGE'}</Message>
-            <Text style={styles.Text}>
-              {'Hello this is my gift for you Neque porro quisquam est qui '}
-            </Text>
+            <Text style={styles.Text}>{message}</Text>
           </View>
         </ScrollView>
       </ImageBackground>

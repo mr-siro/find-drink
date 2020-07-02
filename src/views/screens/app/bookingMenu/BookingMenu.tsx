@@ -23,7 +23,7 @@ export interface MenuProps {
 export interface Products {
   id: string;
   title: string;
-  price: string;
+  price: number;
   image: ImageSourcePropType;
   count: number;
 }
@@ -53,7 +53,7 @@ export const BookingMenu: React.FunctionComponent = (props: MenuProps) => {
     return (
       <Card
         title={item.title}
-        price={item.price}
+        price={item.price.toString()}
         image={item.image}
         buttonTitle={item.count == 0 ? '+' : `x${item.count}`}
         buttonStyle={{backgroundColor: item.count == 0 ? '#121F39' : '#72C729'}}

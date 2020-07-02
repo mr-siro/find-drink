@@ -5,7 +5,7 @@ import {Colors, Metrics} from '@share';
 export interface CartItemProps {
   image: ImageSourcePropType;
   amount: string;
-  price: string | number;
+  price: number;
   diveStyle?:ViewStyle;
 }
 

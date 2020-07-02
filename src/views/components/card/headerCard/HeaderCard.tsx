@@ -5,12 +5,13 @@ import {Icon} from 'react-native-elements';
 
 export interface HeaderCardProps {
   userName: string;
-  message: string;
+
   onPress?: () => void;
+  children?: React.ReactNode;
 }
 
 export const HeaderCard = (props: HeaderCardProps) => {
-  const {userName, message, onPress} = props;
+  const {userName, onPress, children} = props;
 
   return (
     <View style={styles.containerStyle}>
@@ -31,7 +32,8 @@ export const HeaderCard = (props: HeaderCardProps) => {
       <Text style={{fontSize: Metrics.FontSize.h6, color: '#676767'}}>
         {'Your Message:'}
       </Text>
-      <Text style={styles.messageText}>{message}</Text>
+
+      <View>{children}</View>
     </View>
   );
 };
@@ -61,9 +63,5 @@ const styles = StyleSheet.create({
   userText: {
     marginRight: Metrics.spacing.medium,
     fontSize: Metrics.FontSize.h6,
-  },
-  messageText: {
-    fontSize: Metrics.FontSize.h6,
-    marginTop: Metrics.spacing.huge,
   },
 });

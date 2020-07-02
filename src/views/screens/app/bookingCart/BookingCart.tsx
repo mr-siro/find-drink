@@ -1,9 +1,15 @@
 import React, {useState} from 'react';
-import {View, Text, FlatList, Image, ImageSourcePropType} from 'react-native';
+import {
+  View,
+  Text,
+  FlatList,
+  Image,
+  ImageSourcePropType,
+  TextInput,
+} from 'react-native';
 import {MainHeader, HeaderCard, NomalButton, CartItem} from '@components';
 import {Colors, Metrics} from '@share';
 import {Icon} from 'react-native-elements';
-import {listDrink} from '@services';
 import {styles, Title, ListContainer} from './styles';
 
 import {ParamListBase, RouteProp} from '@react-navigation/native';
@@ -18,28 +24,33 @@ export interface CartProps {
 export interface Carts {
   id: string;
   image: ImageSourcePropType;
-  price: string;
+  price: number;
   count: number;
 }
 
 export const BookingCart: React.FunctionComponent = (props: CartProps) => {
+  const [message, setMessage] = useState('');
+
   const {navigation, route} = props;
   const {prouctSelected} = route.params;
-const Price =() => {
-  prouctSelected
-}
+
+  const toTal = () => {
+    let sum = 0;
+    for (let i = 0; i < prouctSelected.length; ++i) {
+      sum += prouctSelected[i].price * prouctSelected[i].count;
+    }
+    console.log(prouctSelected);
+    return sum;
+  };
+
   const renderItem = (item: Carts, index: number) => {
     return (
       <CartItem
         image={item.image}
         amount={item.count.toString()}
-        price={parseInt(item.price) * item.count}
+        price={item.price * item.count}
       />
     );
-  };
-
-  const totalPrice = () => {
-   return <Text style={{fontSize: 22}}>${''}</Text>
   };
 
   return (
@@ -54,11 +65,14 @@ const Price =() => {
           />
         }
       />
-      <HeaderCard
-        userName={'Anne Peters'}
-        message={'Hello this is my gift for you Neque porro quisquam est qui'}
-        onPress={() => {}}
-      />
+      <HeaderCard userName={'Anne Peters'} onPress={() => {}}>
+        <TextInput
+          style={{fontWeight: '500', fontSize: Metrics.FontSize.h6}}
+          placeholder={'Take a message'}
+          value={message}
+          onChangeText={(message) => setMessage(message)}
+        />
+      </HeaderCard>
       <ListContainer>
         <Title>{'Drink order'}</Title>
         <Title>{'Amount'}</Title>
@@ -71,12 +85,14 @@ const Price =() => {
       <View style={styles.bottomContainer}>
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
           <Text style={{fontSize: 18, color: '#676767'}}>{'Total:'}</Text>
-          {totalPrice()}
+          <Text style={{fontSize: 22}}>${toTal()}</Text>
         </View>
         <NomalButton
           title={'Payment'}
           buttonStyle={styles.payBtn}
-          onPress={() => navigation.navigate(AppRoute.REDEEM)}
+          onPress={() =>
+            navigation.navigate(AppRoute.REDEEM, {message: message})
+          }
         />
       </View>
     </View>
