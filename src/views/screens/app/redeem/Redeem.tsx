@@ -61,7 +61,9 @@ export const ReddemScreen = (props: ReddemProps) => {
           <Cost>
             <View>
               <Text style={styles.Title}>{'AMOUNT'}</Text>
-              <Text style={styles.Text}>{(totalAmout < 10) ? `0${totalAmout}` : totalAmout}</Text>
+              <Text style={styles.Text}>
+                {totalAmout < 10 ? `0${totalAmout}` : totalAmout}
+              </Text>
             </View>
             <View style={{flexDirection: 'row'}}>
               <Icon
@@ -78,7 +80,7 @@ export const ReddemScreen = (props: ReddemProps) => {
           </Cost>
           <View style={styles.messageContainer}>
             <Message>{'MESSAGE'}</Message>
-            <Text style={[styles.Text,{textAlign:'left'}]}>{message}</Text>
+            <Text style={[styles.Text, {textAlign: 'left'}]}>{message}</Text>
           </View>
         </ScrollView>
       </ImageBackground>
