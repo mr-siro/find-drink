@@ -82,7 +82,7 @@ export const BookingMenu: React.FunctionComponent = (props: MenuProps) => {
         <NomalButton
           onPress={() =>
             navigation.navigate(AppRoute.BOOKINGCART, {
-              prouctSelected: filterProduct()
+              productSelected: filterProduct()
             })
           }
           title={'Choose your friend'}

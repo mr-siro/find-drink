@@ -32,14 +32,30 @@ export const BookingCart: React.FunctionComponent = (props: CartProps) => {
   const [message, setMessage] = useState('');
 
   const {navigation, route} = props;
-  const {prouctSelected} = route.params;
+  const {productSelected} = route.params;
 
-  const toTal = () => {
+  // const toTal = () => {
+  //   let sum = 0;
+  //   for (let i = 0; i < prouctSelected.length; ++i) {
+  //     sum += prouctSelected[i].price * prouctSelected[i].count;
+  //   }
+  //   console.log(prouctSelected);
+  //   return sum;
+  // };
+
+  const sumPrice = () => {
     let sum = 0;
-    for (let i = 0; i < prouctSelected.length; ++i) {
-      sum += prouctSelected[i].price * prouctSelected[i].count;
+    for (let item of productSelected) {
+      sum += item.price * item.count;
     }
-    console.log(prouctSelected);
+    return sum;
+  };
+
+  const sumAmount = () => {
+    let sum = 0;
+    for (let item of productSelected) {
+      sum += item.count;
+    }
     return sum;
   };
 
@@ -47,7 +63,7 @@ export const BookingCart: React.FunctionComponent = (props: CartProps) => {
     return (
       <CartItem
         image={item.image}
-        amount={item.count.toString()}
+        amount={item.count < 10 ? `0${item.count}` : item.count}
         price={item.price * item.count}
       />
     );
@@ -68,7 +84,7 @@ export const BookingCart: React.FunctionComponent = (props: CartProps) => {
       <HeaderCard userName={'Anne Peters'} onPress={() => {}}>
         <TextInput
           style={{fontWeight: '500', fontSize: Metrics.FontSize.h6}}
-          placeholder={'Take a message'}
+          placeholder={'Enter the message'}
           value={message}
           onChangeText={(message) => setMessage(message)}
         />
@@ -79,19 +95,23 @@ export const BookingCart: React.FunctionComponent = (props: CartProps) => {
         <Title>{'Price'}</Title>
       </ListContainer>
       <FlatList
-        data={prouctSelected}
+        data={productSelected}
         renderItem={({item, index}) => renderItem(item, index)}
       />
       <View style={styles.bottomContainer}>
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
           <Text style={{fontSize: 18, color: '#676767'}}>{'Total:'}</Text>
-          <Text style={{fontSize: 22}}>${toTal()}</Text>
+          <Text style={{fontSize: 22}}>${sumPrice()}</Text>
         </View>
         <NomalButton
           title={'Payment'}
           buttonStyle={styles.payBtn}
           onPress={() =>
-            navigation.navigate(AppRoute.REDEEM, {message: message})
+            navigation.navigate(AppRoute.REDEEM, {
+              message: message,
+              totalPrice: sumPrice(),
+              totalAmout: sumAmount(),
+            })
           }
         />
       </View>

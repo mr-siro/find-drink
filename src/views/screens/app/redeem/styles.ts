@@ -21,12 +21,13 @@ const styles = StyleSheet.create({
 
   address: {fontSize: Metrics.FontSize.large, color: '#848484', lineHeight: 24},
 
-  Text:{fontSize: Metrics.FontSize.large, lineHeight: 24},
+  Text:{fontSize: Metrics.FontSize.large, lineHeight: 24, textAlign:'center'},
 
   Title:{
     fontSize: Metrics.FontSize.medium,
     color: '#848484',
     lineHeight: 24,
+    textAlign:'center'
   },
 
   imageBackGround:{

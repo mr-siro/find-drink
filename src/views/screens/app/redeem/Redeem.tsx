@@ -21,7 +21,7 @@ export interface ReddemProps {
 }
 export const ReddemScreen = (props: ReddemProps) => {
   const {route} = props;
-  const {message} = route.params;
+  const {message, totalPrice, totalAmout} = route.params;
   return (
     <View style={{flex: 1}}>
       <MainHeader
@@ -61,7 +61,7 @@ export const ReddemScreen = (props: ReddemProps) => {
           <Cost>
             <View>
               <Text style={styles.Title}>{'AMOUNT'}</Text>
-              <Text style={styles.Text}>{'03'}</Text>
+              <Text style={styles.Text}>{(totalAmout < 10) ? `0${totalAmout}` : totalAmout}</Text>
             </View>
             <View style={{flexDirection: 'row'}}>
               <Icon
@@ -72,13 +72,13 @@ export const ReddemScreen = (props: ReddemProps) => {
               />
               <View>
                 <Text style={styles.Title}>{'PAID'}</Text>
-                <Text style={styles.Text}>${'148'}</Text>
+                <Text style={styles.Text}>${totalPrice}</Text>
               </View>
             </View>
           </Cost>
           <View style={styles.messageContainer}>
             <Message>{'MESSAGE'}</Message>
-            <Text style={styles.Text}>{message}</Text>
+            <Text style={[styles.Text,{textAlign:'left'}]}>{message}</Text>
           </View>
         </ScrollView>
       </ImageBackground>
