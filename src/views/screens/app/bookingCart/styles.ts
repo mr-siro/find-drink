@@ -25,4 +25,15 @@ bottomContainer:{
   }
 });
 
-export {styles};
+const Title = styled.Text`
+fontSize: ${Metrics.FontSize.h6}px;
+color: #676767;
+paddingBottom: ${Metrics.spacing.huge}px;
+`;
+
+const ListContainer = styled.View`
+  flexDirection: row;
+  justifyContent: space-around;
+  marginTop: ${Metrics.spacing.huge}px;
+`;
+export {styles,Title,ListContainer};

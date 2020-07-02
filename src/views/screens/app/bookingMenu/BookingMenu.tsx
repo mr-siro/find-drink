@@ -43,6 +43,12 @@ export const BookingMenu: React.FunctionComponent = (props: MenuProps) => {
     // console.log(newList);
   };
 
+  const filterProduct = () => {
+    const filteredData = listMenu.filter((item: Products) => item.count > 0);
+    // console.log(filteredData);
+    return filteredData;
+  };
+  
   const renderItem = (item: Products, index: number) => {
     return (
       <Card
@@ -74,7 +80,12 @@ export const BookingMenu: React.FunctionComponent = (props: MenuProps) => {
       </ScrollView>
       <View style={styles.bottomContainer}>
         <NomalButton
-          onPress={() => navigation.navigate(AppRoute.BOOKINGCART)}
+          onPress={() =>
+            navigation.navigate(AppRoute.BOOKINGCART, {
+              prouctSelected: filterProduct(),
+              count:count
+            })
+          }
           title={'Choose your friend'}
           buttonStyle={{backgroundColor: Colors.Background.ButtonBackground}}
         />
