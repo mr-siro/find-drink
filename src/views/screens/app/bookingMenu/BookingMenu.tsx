@@ -12,12 +12,11 @@ import {styles, Container} from './styles';
 import {MainHeader, ToggleServices, Card, NomalButton} from '@components';
 import {listDrink} from '@services';
 
-import {ParamListBase} from '@react-navigation/native';
-import {NativeStackNavigationProp} from 'react-native-screens/native-stack/types';
-import {AppRoute} from '@navigator';
+import {AppRoute, AppNavigatorParams} from '@navigator';
+import {StackNavigationProp} from '@react-navigation/stack';
 
 export interface MenuProps {
-  navigation: NativeStackNavigationProp<ParamListBase>;
+  navigation: StackNavigationProp<AppNavigatorParams, AppRoute.BOOKINGMENU>;
 }
 
 export interface Products {
@@ -25,38 +24,40 @@ export interface Products {
   title: string;
   price: number;
   image: ImageSourcePropType;
-  count: number;
+  amount: number;
 }
 
-export const BookingMenu: React.FunctionComponent = (props: MenuProps) => {
+export const BookingMenu = (props: MenuProps) => {
   const {navigation} = props;
   const [listMenu, setListMenu] = useState(listDrink);
-  const [count, setCount] = useState(0);
+  const [amount, setAmount] = useState(0);
 
   const handleAddItem = (id: string) => {
     let newList = [...listMenu];
     const filteredData = newList.find((item: Products) => item.id == id);
     if (filteredData) {
-      setCount((filteredData.count = filteredData.count + 1));
+      setAmount((filteredData.amount = filteredData.amount + 1));
       setListMenu(newList);
     }
     // console.log(newList);
   };
 
   const filterProduct = () => {
-    const filteredData = listMenu.filter((item: Products) => item.count > 0);
+    const filteredData = listMenu.filter((item: Products) => item.amount > 0);
     // console.log(filteredData);
     return filteredData;
   };
-  
+
   const renderItem = (item: Products, index: number) => {
     return (
       <Card
         title={item.title}
         price={item.price.toString()}
         image={item.image}
-        buttonTitle={item.count == 0 ? '+' : `x${item.count}`}
-        buttonStyle={{backgroundColor: item.count == 0 ? '#121F39' : '#72C729'}}
+        buttonTitle={item.amount == 0 ? '+' : `x${item.amount}`}
+        buttonStyle={{
+          backgroundColor: item.amount == 0 ? '#121F39' : '#72C729',
+        }}
         onPress={() => handleAddItem(item.id)}
       />
     );
@@ -82,7 +83,7 @@ export const BookingMenu: React.FunctionComponent = (props: MenuProps) => {
         <NomalButton
           onPress={() =>
             navigation.navigate(AppRoute.BOOKINGCART, {
-              productSelected: filterProduct()
+              productSelected: filterProduct(),
             })
           }
           title={'Choose your friend'}

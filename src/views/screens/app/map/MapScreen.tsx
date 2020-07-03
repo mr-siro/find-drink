@@ -4,22 +4,21 @@ import {
   Text,
   Image,
   TouchableOpacity,
-  ImageBackground
+  ImageBackground,
 } from 'react-native';
 import {Colors, Metrics} from '@share';
 import {Images} from '@assets';
 import {styles} from './styles';
 import {MainHeader, ToggleServices, MapCard} from '@components';
 
-import {ParamListBase} from '@react-navigation/native';
-import {NativeStackNavigationProp} from 'react-native-screens/native-stack/types';
-import {AppRoute} from '@navigator';
+import {AppRoute, AppNavigatorParams} from '@navigator';
+import {StackNavigationProp} from '@react-navigation/stack';
 
 export interface MapProps {
-  navigation: NativeStackNavigationProp<ParamListBase>;
+  navigation: StackNavigationProp<AppNavigatorParams, AppRoute.MAPSCREEN>;
 }
 
-export const MapScreen: React.FunctionComponent = (props: MapProps) => {
+export const MapScreen = (props: MapProps) => {
   const {navigation} = props;
 
   return (

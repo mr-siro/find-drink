@@ -13,15 +13,13 @@ import {
   Line,
 } from './styles';
 import {Icon} from 'react-native-elements';
-import {RouteProp} from '@react-navigation/native';
+import {ReddemProps} from '@navigator';
 import moment from 'moment';
 
-export interface ReddemProps {
-  route: RouteProp;
-}
-export const ReddemScreen = (props: ReddemProps) => {
+export const ReddemScreen: React.FC<ReddemProps> = (props) => {
   const {route} = props;
   const {message, totalPrice, totalAmout} = route.params;
+
   return (
     <View style={{flex: 1}}>
       <MainHeader
@@ -49,7 +47,7 @@ export const ReddemScreen = (props: ReddemProps) => {
             <View>
               <Text style={styles.Title}>{'DATE'}</Text>
               <Text style={styles.Text}>
-                {moment(new Date()).format('DD/MM/YYYY')}
+                {moment(new Date()).format('DD MMM,YYYY')}
               </Text>
             </View>
             <View>

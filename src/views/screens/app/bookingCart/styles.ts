@@ -22,7 +22,14 @@ bottomContainer:{
     backgroundColor: Colors.Background.ButtonBackground,
     width: 171,
     marginTop: 0,
-  }
+  },
+  
+  textInputStyle:{
+  fontWeight: '500',
+  fontSize: Metrics.FontSize.h6,
+  marginTop:Metrics.spacing.medium
+}
+
 });
 
 const Title = styled.Text`

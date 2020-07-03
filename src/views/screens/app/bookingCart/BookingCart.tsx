@@ -3,7 +3,6 @@ import {
   View,
   Text,
   FlatList,
-  Image,
   ImageSourcePropType,
   TextInput,
 } from 'react-native';
@@ -12,23 +11,16 @@ import {Colors, Metrics} from '@share';
 import {Icon} from 'react-native-elements';
 import {styles, Title, ListContainer} from './styles';
 
-import {ParamListBase, RouteProp} from '@react-navigation/native';
-import {NativeStackNavigationProp} from 'react-native-screens/native-stack/types';
-import {AppRoute} from '@navigator';
-
-export interface CartProps {
-  navigation: NativeStackNavigationProp<ParamListBase>;
-  route: RouteProp;
-}
+import {AppRoute, BookingcartProps} from '@navigator';
 
 export interface Carts {
   id: string;
   image: ImageSourcePropType;
   price: number;
-  count: number;
+  amount: number;
 }
 
-export const BookingCart: React.FunctionComponent = (props: CartProps) => {
+export const BookingCart: React.FC<BookingcartProps> = (props) => {
   const [message, setMessage] = useState('');
 
   const {navigation, route} = props;
@@ -46,7 +38,7 @@ export const BookingCart: React.FunctionComponent = (props: CartProps) => {
   const sumPrice = () => {
     let sum = 0;
     for (let item of productSelected) {
-      sum += item.price * item.count;
+      sum += item.price * item.amount;
     }
     return sum;
   };
@@ -54,7 +46,7 @@ export const BookingCart: React.FunctionComponent = (props: CartProps) => {
   const sumAmount = () => {
     let sum = 0;
     for (let item of productSelected) {
-      sum += item.count;
+      sum += item.amount;
     }
     return sum;
   };
@@ -63,8 +55,8 @@ export const BookingCart: React.FunctionComponent = (props: CartProps) => {
     return (
       <CartItem
         image={item.image}
-        amount={item.count < 10 ? `0${item.count}` : item.count}
-        price={item.price * item.count}
+        amount={item.amount < 10 ? `0${item.amount}` : item.amount}
+        price={item.price * item.amount}
       />
     );
   };
@@ -83,8 +75,8 @@ export const BookingCart: React.FunctionComponent = (props: CartProps) => {
       />
       <HeaderCard userName={'Anne Peters'} onPress={() => {}}>
         <TextInput
-          style={{fontWeight: '500', fontSize: Metrics.FontSize.h6}}
-          placeholder={'Enter the message'}
+          style={styles.textInputStyle}
+          placeholder={'Enter your message'}
           value={message}
           onChangeText={(message) => setMessage(message)}
         />
