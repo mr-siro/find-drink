@@ -39,6 +39,7 @@ export const BookingMenu = (props: MenuProps) => {
       setAmount((filteredData.amount = filteredData.amount + 1));
       setListMenu(newList);
     }
+    return filteredData;
     // console.log(newList);
   };
 
