@@ -45,7 +45,7 @@ export const BookingMenu = (props: MenuProps) => {
 
   const filterProduct = () => {
     const filteredData = listMenu.filter((item: Products) => item.amount > 0);
-    // console.log(filteredData);
+    console.log('filteredData======', filteredData);
     return filteredData;
   };
 
