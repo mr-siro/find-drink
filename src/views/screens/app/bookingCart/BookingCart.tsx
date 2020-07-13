@@ -117,7 +117,6 @@ export const BookingCart: React.FC<BookingcartProps> = (props) => {
       for (let i = 1; i < listCart.length - 1; i++) {
         if (max.price < max.price * listCart[i].amount) {
           max.price = listCart[i].price * listCart[i].amount;
-          console.log('i', i);
         }
       }
       return max.title;

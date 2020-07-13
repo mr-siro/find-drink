@@ -36,7 +36,7 @@ export const BookingMenu = (props: MenuProps) => {
     let newList = [...listMenu];
     const filteredData = newList.find((item: Products) => item.id == id);
     if (filteredData) {
-      setAmount((filteredData.amount = filteredData.amount + 1));
+      setAmount((filteredData.amount += 1));
       setListMenu(newList);
     }
     return filteredData;
