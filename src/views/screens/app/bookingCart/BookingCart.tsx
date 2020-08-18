@@ -41,11 +41,20 @@ export const BookingCart: React.FC<BookingcartProps> = (props) => {
   // };
 
   const sumPrice = () => {
-    let sum = 0;
-    for (let item of productSelected) {
-      sum += item.price * item.amount;
-    }
-    return sum;
+    //su dung thuat toan
+
+    // let sum = 0;
+    // for (let item of productSelected) {
+    //   sum += item.price * item.amount;
+    // }
+    // return sum;
+
+    //su dung reduce
+    let totalPrice = productSelected.reduce((sum: number, item: Carts) => {
+      return sum + item.price * item.amount;
+    }, 0);
+
+    return totalPrice;
   };
 
   const sumAmount = () => {
