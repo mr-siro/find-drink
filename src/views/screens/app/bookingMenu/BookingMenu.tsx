@@ -14,13 +14,14 @@ import {listDrink} from '@services';
 
 import {AppRoute, AppNavigatorParams} from '@navigator';
 import {StackNavigationProp} from '@react-navigation/stack';
+import { set } from 'react-native-reanimated';
 
 export interface MenuProps {
   navigation: StackNavigationProp<AppNavigatorParams, AppRoute.BOOKINGMENU>;
 }
 
 export interface Products {
-  id: string;
+  id: number;
   title: string;
   price: number;
   image: ImageSourcePropType;
@@ -32,15 +33,22 @@ export const BookingMenu = (props: MenuProps) => {
   const [listMenu, setListMenu] = useState(listDrink);
   const [amount, setAmount] = useState(0);
 
-  const handleAddItem = (id: string) => {
+  const handleAddItem = (id: number) => {
     let newList = [...listMenu];
-    const filteredData = newList.find((item: Products) => item.id == id);
-    if (filteredData) {
-      setAmount((filteredData.amount += 1));
-      setListMenu(newList);
+    // const filteredData = newList.find((item: Products) => item.id == id);
+    // if (filteredData) {
+    //   setAmount((filteredData.amount += 1));
+    //   setListMenu(newList);
+    // }
+    // return filteredData;
+    for (let i = 0; i < newList.length; i++) {
+      if (newList[i].id == id) {
+        setAmount((newList[i].amount += 1));
+        setListMenu(newList);
+        return i;
+      }
     }
-    return filteredData;
-    // console.log(newList);
+    return -1;
   };
 
   const filterProduct = () => {
