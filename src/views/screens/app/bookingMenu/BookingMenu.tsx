@@ -52,9 +52,16 @@ export const BookingMenu = (props: MenuProps) => {
   };
 
   const filterProduct = () => {
-    const filteredData = listMenu.filter((item: Products) => item.amount > 0);
-    console.log('filteredData======', filteredData);
-    return filteredData;
+    // const filteredData = listMenu.filter((item: Products) => item.amount > 0);
+    // console.log('filteredData======', filteredData);
+    // return filteredData;
+    let newList: any[] = [];
+    for (let i = 0; i < listMenu.length; i++) {
+      if (listMenu[i].amount > 0) {
+       newList = newList.concat(listMenu[i])
+      }
+    }
+   return newList;
   };
 
   const renderItem = (item: Products, index: number) => {
